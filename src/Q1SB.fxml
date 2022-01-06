@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ServerController">
    <children>
       <Label text="Welcome to chat application!" textFill="RED">
@@ -33,12 +32,12 @@
       </Button>
       <HBox alignment="CENTER" prefHeight="82.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Connect">
+            <Button mnemonicParsing="false" onAction="#connectButton" prefHeight="50.0" prefWidth="150.0" text="Connect">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="50.0" prefWidth="150.0" text="Logout">
+            <Button mnemonicParsing="false" onAction="#logoutButton" prefHeight="50.0" prefWidth="150.0" text="Logout">
                <HBox.margin>
                   <Insets left="100.0" />
                </HBox.margin>
