@@ -11,6 +11,7 @@ public class ServerController {
         s = new Message("");
     }
 
+
     @FXML
     private TextArea textArea;
 
