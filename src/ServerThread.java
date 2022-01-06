@@ -21,17 +21,20 @@ public class ServerThread extends Thread{
     }
 
     private void handleReadAndWrite() throws Exception {
+
+        // Create connections.
         OutputStream outputStream = s.getOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
         InputStream inputStream = s.getInputStream();
         ObjectInputStream objectInputStream = new ObjectInputStream(inputStream);
 
-
+        // Write and read object.
         Message msg;
         msg = (Message) objectInputStream.readObject();
         msg.setMsg(msg.getMsg());
-        objectOutputStream.writeObject(s);
+        objectOutputStream.writeObject(msg);
 
+        // Close connections.
         objectInputStream.close();
         inputStream.close();
         objectOutputStream.close();

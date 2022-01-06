@@ -4,13 +4,14 @@ import java.net.Socket;
 public class ClientThread extends Thread {
     private ServerController cont;
     private String ip;
-    private Message num;
+    private Message msg;
 
-    public ClientThread(ServerController cont, String ip, Message num) {
+    public ClientThread(ServerController cont, String ip, Message msg) {
         this.cont = cont;
         this.ip = ip;
-        this.num = num;
+        this.msg = msg;
     }
+
     public void run() {
         super.run();
         try {
@@ -21,21 +22,22 @@ public class ClientThread extends Thread {
     private void handleReadAndWrite() throws IOException, ClassNotFoundException {
         Socket s = new Socket(ip, 7777);
 
+        // Create connections.
         OutputStream outputStream = s.getOutputStream();
         ObjectOutputStream objOutputStream = new ObjectOutputStream(outputStream);
         InputStream inputStream = s.getInputStream();
         ObjectInputStream objInputStream = new ObjectInputStream(inputStream);
 
-        objOutputStream.writeObject(num);
+        // Write and read object.
+        objOutputStream.writeObject(msg);
+        msg = (Message) objInputStream.readObject();
+        cont.setTextArea(msg.getMsg());
 
-        num = (Message) objInputStream.readObject();
-//        cont.setBinaryNum(num.getBinaryNum());
-
+        // Close connections.
         outputStream.close();
         objOutputStream.close();
         inputStream.close();
         objInputStream.close();
         s.close();
-
     }
 }
