@@ -6,6 +6,8 @@ import java.net.Socket;
 
 public class ServerThread extends Thread{
     private Socket s = null;
+    private ServerThread otherConnection = null;
+
     public ServerThread(Socket socket) {
         this.s = socket;
     }
@@ -40,5 +42,9 @@ public class ServerThread extends Thread{
         objectOutputStream.close();
         outputStream.close();
         s.close();
+    }
+
+    public void connectionUsers(ServerThread serverThread) {
+        otherConnection = serverThread;
     }
 }
